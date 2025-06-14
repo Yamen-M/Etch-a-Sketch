@@ -20,6 +20,14 @@ const btnResetGrid = document.createElement("button");
 const btnToggleColor = document.createElement("button");
 const btnErase = document.createElement("button");
 const titleDiv = document.createElement('div');
+const currentTool = document.createElement("div");
+
+currentTool.textContent = 'Etch-a-Sketch - :D';
+currentTool.style.fontFamily = "Arial, sans-serif";
+currentTool.style.fontSize = '20px';
+currentTool.style.fontWeight = 'bold';
+currentTool.style.marginBottom = '20px';
+currentTool.style.paddingLeft = '5px'; 
 
 btnCustomGrid.textContent = "Customize Grid Size";
 btnCustomGrid.addEventListener('click', () => customGrid());
@@ -33,19 +41,23 @@ btnResetGrid.addEventListener('click', () => {
 btnToggleColor.textContent = "Toggle Black/Color";
 btnToggleColor.addEventListener('click', () =>{
     
-    if(color !== "black")
+    if(color !== "black"){
         color = "black";
-    else
+        displayTool("Black");
+    }
+    else{
         color = "random";
-
+        displayTool("Color")
+    }
 })
 
 btnErase.textContent = "Eraser";
 btnErase.addEventListener('click', () =>{
     
-    if(color !== "white")
+    if(color !== "white"){
         color = "white";
-
+        displayTool("Eraser");
+    }
 })
 
 titleDiv.textContent = 'Etch-a-Sketch - :D';
@@ -73,6 +85,10 @@ btnContainer.style.gap = "10px"
 btnContainer.style.padding = "20px";
 btnContainer.style.height = "100vh";
 
+
+function displayTool(tool){
+    currentTool.textContent = `Selected tool: ${tool}`
+}
 
 function randomColor(){
     var HEXcolors = "0123456789ABCDEF";
@@ -109,12 +125,15 @@ function createSideBar()
     btnResetGrid.style.marginTop = "10px";
     btnToggleColor.style.marginTop = "10px";
     btnErase.style.marginTop = "10px";
-    btnErase.style.marginBottom = "225px"
+    btnErase.style.marginBottom = "80px";
+    currentTool.style.marginBottom = "125px";
 
     btnContainer.appendChild(btnCustomGrid);
     btnContainer.appendChild(btnResetGrid);
     btnContainer.appendChild(btnToggleColor);
     btnContainer.appendChild(btnErase);
+    displayTool("Black")
+    btnContainer.appendChild(currentTool);
     
     wrapper.appendChild(btnContainer)
 }

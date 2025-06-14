@@ -1,20 +1,36 @@
+body {
+  overflow-y: hidden;
+}
+
 button {
-    background-color: #4CAF50;      
-    color: white;
-    border: none;
-    padding: 15px 15px;    
-    font-size: 20px;  
-    margin: 6px 0;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  background: linear-gradient(145deg, #3A8DFF, #327DE0); /* soft blue gradient */
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  font-size: 20px;
+  margin: 8px 0;
+  border-radius: 8px;
+  cursor: pointer;
+
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: 
+    background 0.3s ease,
+    transform 0.1s ease,
+    box-shadow 0.2s ease;
 }
 
 button:hover {
-    background-color: #45a049;       
+  background: linear-gradient(145deg, #2E7AE0, #296DCC); /* darker on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+button:active {
+  transform: scale(0.97);
+  background: linear-gradient(145deg, #235BB3, #1D4A9A); /* active = deep indigo */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 button:focus {
-    outline: 2px solid #333;         
-    outline-offset: 2px;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(58, 141, 255, 0.5); /* glow effect */
 }
