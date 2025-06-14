@@ -8,7 +8,8 @@ document.documentElement.style.margin = '0';
 document.documentElement.style.padding = '0';
 
 var mainContainer;
-var size;
+var size = 16;
+var color = "black";
 
 const wrapper = document.createElement("div");
 const btnContainer = document.createElement("div");
@@ -29,12 +30,26 @@ btnResetGrid.addEventListener('click', () => {
     createGrid(size);
 });
 
-btnToggleColor.textContent = "Toggle Black/Color"
-btnErase.textContent = "Eraser"
+btnToggleColor.textContent = "Toggle Black/Color";
+btnToggleColor.addEventListener('click', () =>{
+    
+    if(color !== "black")
+        color = "black";
+    else
+        color = "random";
 
+})
+
+btnErase.textContent = "Eraser";
+btnErase.addEventListener('click', () =>{
+    
+    if(color !== "white")
+        color = "white";
+
+})
 
 titleDiv.textContent = 'Etch-a-Sketch - :D';
-titleDiv.style.fontFamily = "Arial, sans-serif"
+titleDiv.style.fontFamily = "Arial, sans-serif";
 titleDiv.style.fontSize = '24px';
 titleDiv.style.fontWeight = 'bold';
 titleDiv.style.marginBottom = '20px';
@@ -57,6 +72,20 @@ btnContainer.style.justifyContent = "flex-start"
 btnContainer.style.gap = "10px"
 btnContainer.style.padding = "20px";
 btnContainer.style.height = "100vh";
+
+
+function randomColor(){
+    var HEXcolors = "0123456789ABCDEF";
+    var color = "#";
+
+    for(i = 0; i < 6; i++)
+    {
+        color += HEXcolors[Math.floor(Math.random() * 16)];
+    }
+    
+    return color;
+}
+
 
 function customGrid(){
     let size_input = prompt("Please enter preferred grid size (between 1 and 100): ");
@@ -107,6 +136,16 @@ function createGrid(size)
         pixel.style.height = gridPixelSize + "px";
         pixel.style.border = "1px solid black";
         pixel.style.boxSizing = "border-box";
+
+        pixel.addEventListener("mouseenter", () => {
+            if(color === "black")
+                pixel.style.backgroundColor = "black";
+            else if(color === "white")
+                pixel.style.backgroundColor = "white";
+            else
+                pixel.style.backgroundColor = randomColor();
+        });
+
         mainContainer.appendChild(pixel);
     }
     
@@ -116,4 +155,4 @@ function createGrid(size)
 }
 
 createSideBar();
-createGrid(16);
+createGrid(size);
