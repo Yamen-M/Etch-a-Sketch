@@ -104,6 +104,7 @@ function randomColor(){
 
 
 function customGrid(){
+
     let size_input = prompt("Please enter preferred grid size (between 1 and 100): ");
     size = parseInt(size_input,10);
 
@@ -146,7 +147,7 @@ function createGrid(size)
     mainContainer.style.width = "640px";
     mainContainer.style.height = "640px";
 
-    const gridPixelSize = 640/size;
+    const gridPixelSize = Math.floor(640/size);
 
     for(i = 0; i < size*size; i++)
     {
